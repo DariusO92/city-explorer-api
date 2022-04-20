@@ -19,5 +19,6 @@
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-Jonathan Rumsey github.com/nojronatron
-Gina Napier
+- Jonathan Rumsey github.com/nojronatron
+- Gina Napier
+- ![Blank diagram](https://user-images.githubusercontent.com/99936580/164157795-6b05e4c9-e615-4457-8f58-c0fe15d32a34.jpeg)
