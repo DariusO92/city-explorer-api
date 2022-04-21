@@ -19,7 +19,7 @@ let PORT = process.env.PORT || 3002;
 // ROUTES
 // will use these for endpoint
 app.get('/', (request, response) => {
-  response.send('Default Route');
+  response.send('Start Route');
 });
 
 app.get('/weather', (request, response, next) => {
