@@ -26,14 +26,16 @@ app.get('/weather', (request, response, next) => {
   try{
 
     let cityInput = request.query.city;
-    let cityLat = parseInt(request.query.lat);
-    let cityLon = parseInt(request.query.lon);
+    console.log(cityInput);
+    // let cityLat = parseInt(request.searchQuery.lat);
+    // let cityLon = parseInt(request.searchQuery.lon);
     
     let cityData = weatherData.find(data => 
-      data.city_name === cityInput 
-      && parseInt(data.lat) === cityLat 
-      && parseInt(data.lon) === cityLon
+      data.city_name.toLowerCase() === cityInput.toLowerCase()
+      // && parseInt(data.lat) === cityLat 
+      // && parseInt(data.lon) === cityLon
     );
+    console.log(cityData);
     let forecastArr = [];
     cityData.data.forEach(object => {
       forecastArr.push(new Forecast(object));
