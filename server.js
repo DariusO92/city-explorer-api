@@ -6,7 +6,8 @@
 // require is used instead of import in servers
 let express = require('express');
 require('dotenv').config();
-let weatherData = require('./data/weather.json')
+let weatherData = require('./components/weather.js')
+ let movieData = require('./components/weather.js')
 let cors = require('cors');
 
 // USE
@@ -22,30 +23,9 @@ app.get('/', (request, response) => {
   response.send('Start Route');
 });
 
-app.get('/weather', (request, response, next) => {
-  try{
+app.get('/weather', weatherData);
 
-    let cityInput = request.query.city;
-    console.log(cityInput);
-    // let cityLat = parseInt(request.searchQuery.lat);
-    // let cityLon = parseInt(request.searchQuery.lon);
-    
-    let cityData = weatherData.find(data => 
-      data.city_name.toLowerCase() === cityInput.toLowerCase()
-      // && parseInt(data.lat) === cityLat 
-      // && parseInt(data.lon) === cityLon
-    );
-    console.log(cityData);
-    let forecastArr = [];
-    cityData.data.forEach(object => {
-      forecastArr.push(new Forecast(object));
-    });
-    response.send(forecastArr);
-  }
-  catch{
-    next(error);
-  }
-});
+app.get('/movies', movieData);
 
 app.get('*', (request, response) => {
   response.send('Not a valid request!');
@@ -58,12 +38,7 @@ app.use((error, request, response, next) => {
 });
 
 // CLASSES
-class Forecast {
-  constructor(dataset){
-    this.date = dataset.datetime;
-    this.description = dataset.weather.description
-  }
-}
+
 
 
 // Listen
