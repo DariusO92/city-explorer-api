@@ -6,8 +6,8 @@
 // require is used instead of import in servers
 let express = require('express');
 require('dotenv').config();
-let weatherData = require('./weather.js')
-let movieData = require('./movies.js')
+let weatherData = require('./components/weather')
+// let movieData = require('./movies.js')
 let cors = require('cors');
 
 // USE

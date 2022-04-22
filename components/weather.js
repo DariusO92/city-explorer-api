@@ -1,6 +1,6 @@
 'use strict';
 let axios = require('axios');
-const { response } = require('express');
+// const { response } = require('express');
 
 
 
@@ -13,8 +13,8 @@ class Forecast {
 }
 
 function weatherData(request,response) {
-  let cityLat = req.query.lat;
-  let cityLon = req.query.lon;
+  let cityLat = request.query.lat;
+  let cityLon = request.query.lon;
   let weatherUrl = `https://api.weatherbit.io/v2.o/current?lat=${cityLat}&lon=${cityLon}&key=${process.env.WEATHER_API_KEY}&units=${I}&days${3}`
 }
 axios. get(weatherUrl)
