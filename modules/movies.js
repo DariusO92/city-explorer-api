@@ -14,9 +14,9 @@ class Movies {
 function movieData(request, response) {
   let cityName = request.query.cityName;
   let movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&query=${cityName}&page=1&include_adult=false`;
-
+console.log(movieUrl)
   axios.get(movieUrl)
-  .then(moviestats => movieData.stats.data.results.map(object => new Movies(object)))
+  .then(movie => movie.data.data.cityName.map(object => new Movies(object)))
   .then(newMoviesStats => response.status(200).send(newMoviesStats))
   .catch(err => console.error(err));
 }

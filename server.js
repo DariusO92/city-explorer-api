@@ -6,8 +6,9 @@
 // require is used instead of import in servers
 let express = require('express');
 require('dotenv').config();
-let weatherData = require('./components/weather.js')
- let movieData = require('./components/weather.js')
+let weather = require('./modules/weather.js')
+ let movie = require('./modules/movies.js')
+ const axios = require('axios').default
 let cors = require('cors');
 
 // USE
@@ -23,9 +24,9 @@ app.get('/', (request, response) => {
   response.send('Start Route');
 });
 
-app.get('/weather', weatherData);
+app.get('/weather', weather);
 
-app.get('/movies', movieData);
+app.get('/movies', movie);
 
 app.get('*', (request, response) => {
   response.send('Not a valid request!');
@@ -33,9 +34,19 @@ app.get('*', (request, response) => {
 
 // ERRORS
 // Handle any errors
-app.use((error, request, response, next) => {
-  response.status(500).send(error.message);
-});
+function weatherHandler(request, response) {
+  const { lat, lon } = request.query;
+  weather(lat, lon)
+  .then(summaries => response.send(summaries))
+  .catch((error) => {
+    console.error(error);
+    response.status(200).send('Sorry. Something went wrong!')
+  });
+}  
+
+// app.use((error, request, response, next) => {
+//   response.status(500).send(error.message);
+// });
 
 // CLASSES
 
